@@ -1,0 +1,9 @@
+{
+  "name": "areneedhamschoolsclosed",
+  "version": "1.0.0",
+  "description": "A simple site to check if Needham schools are closed.",
+  "main": "index.html",
+  "scripts": {},
+  "author": "",
+  "license": "MIT"
+}
