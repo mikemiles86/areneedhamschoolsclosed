@@ -8,10 +8,13 @@ async function checkSchoolStatus() {
     try {
         const response = await fetch('https://www.needham.k12.ma.us/', { mode: 'cors' });
         const html = await response.text();
-        // Look for closure message (customize this string as needed)
-        const closedRegex = /school(s)? (is|are) closed|no school|schools closed|closed due to/i;
-        const isClosed = closedRegex.test(html);
-        if (isClosed) {
+        // Create a DOM parser to search for the banner or element containing "No school:"
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        // Search for any element containing the phrase "No school:"
+        const elements = Array.from(doc.querySelectorAll('body *')).filter(el => el.textContent && el.textContent.match(/No School:/));
+        if (elements.length > 0) {
+            // Found a closure message
             statusDiv.textContent = 'NO';
             statusDiv.style.background = '#002855';
             statusDiv.style.color = '#FFC72C';
