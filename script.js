@@ -29,7 +29,5 @@ async function checkSchoolStatus() {
     }
 }
 
-document.getElementById('refreshBtn').addEventListener('click', checkSchoolStatus);
-
 // Initial status on page load
 checkSchoolStatus();
